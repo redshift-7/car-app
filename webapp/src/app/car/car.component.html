@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div *ngIf="car">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Number Plate</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{ car.id }}</td>
+        <td>{{ car.make }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.numberplate }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
