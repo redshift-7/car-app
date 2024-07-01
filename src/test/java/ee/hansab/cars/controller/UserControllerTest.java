@@ -31,6 +31,15 @@ class UserControllerTest {
     private UserService userService;
 
     @Test
+    void getUserById_invalidFormat() throws Exception {
+        String invalidUserId = "abc";
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/users/{userId}", invalidUserId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void getUsers() throws Exception {
         List<UserDto> users = Arrays.asList(
                 UserDto.builder().id(1L).name("John").build(),
