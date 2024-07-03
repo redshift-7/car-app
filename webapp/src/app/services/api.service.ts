@@ -15,8 +15,10 @@ export class ApiService {
 
   constructor(private http: HttpClient, private environmentService: EnvironmentService) { }
 
+  demoDataPath = 'assets/demo-data-ee.json';
+
   getData<T>(endpoint: string): Observable<T[]> {
-    const url = this.environmentService.isGitHubPages() ? '../assets/demo-data-ee.json' : `${this.baseUrl}/${endpoint}`;
+    const url = this.environmentService.isGitHubPages() ? this.demoDataPath : `${this.baseUrl}/${endpoint}`;
 
     return this.http.get<any[]>(url).pipe(
       map(data => {
@@ -29,7 +31,7 @@ export class ApiService {
   }
 
   getItemById<T>(endpoint: string, id: number): Observable<T> {
-    const url = this.environmentService.isGitHubPages() ? '../assets/demo-data-ee.json' : `${this.baseUrl}/${endpoint}/${id}`;
+    const url = this.environmentService.isGitHubPages() ? this.demoDataPath : `${this.baseUrl}/${endpoint}/${id}`;
 
     return this.http.get<any[]>(url).pipe(
       map(data => {
