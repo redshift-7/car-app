@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { dev } from '../../environments/dev';
-import { HttpClient } from "@angular/common/http";
 import { Car } from "../models/car.model";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  private baseUrl = `${dev.apiBaseUrl}/cars`;
+  private endpoint = 'cars';
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
   getCars(): Observable<Car[]> {
-    return this.http.get<Car[]>(this.baseUrl);
+    return this.apiService.getData<Car>(this.endpoint);
   }
 
-  getCarById(id : number): Observable<Car> {
-    return this.http.get<Car>(this.baseUrl + '/' + id);
+  getCarById(id: number): Observable<Car> {
+    return this.apiService.getItemById<Car>(this.endpoint, id);
   }
 }
